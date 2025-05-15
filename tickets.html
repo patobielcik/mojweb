@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventy - Domov</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    main {
+      margin-top: 10px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 70px 20px;
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .logo img {
+      height: 150px;
+      margin-top: 10px;
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 30px;
+      height: 4px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    .nav-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-menu ul li {
+      padding: 10px 20px;
+    }
+    .nav-menu ul li a {
+      text-decoration: none;
+      color: black;
+      display: block;
+    }
+    .nav-menu.active {
+      display: flex;
+    }
+    .cart-icon {
+      position: absolute;
+      top: 65px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .cart-icon svg {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <img src="bratiska.jpg" alt="Logo">
+    </div>
+    <a href="cart.html" class="cart-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2 13h13l2-7H6"></path>
+      </svg>
+    </a>
+  </header>
+  
+  <!-- Navigačné menu -->
+  <nav id="navMenu" class="nav-menu">
+    <ul>
+      <li><a href="index.html">Domov</a></li>
+      <li><a href="lineup.html">LineUp</a></li>
+      <li><a href="tickets.html">Lístky</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <h1>Kúpa lístkov</h1>
+    
+    <div class="ticket-option">
+      <h2>3-dňový lístok - 150 €</h2>
+      <p>Užite si festival naplno s trojdňovým lístkom, ktorý vám umožní vstup na všetky dni podujatia a prístup ku všetkým akciám.</p>
+      <button onclick="addToCart('3-dňový lístok', 150)">Kúpiť</button>
+    </div>
+    
+    <div class="ticket-option">
+      <h2>Denný lístok - 70 €</h2>
+      <p>Vstup na jeden deň festivalu – vyberte si deň podľa svojho výberu a zažite skvelý zážitok plný hudby a zábavy.</p>
+      <button onclick="addToCart('Denný lístok', 70)">Kúpiť</button>
+    </div>
+    
+    <div class="ticket-option">
+      <h2>VIP lístok</h2>
+      <p>Zažite festival v exkluzívnom štýle. Vyberte si 1-dňový VIP lístok pre jedinečný zážitok s prémiovými výhodami, alebo 3-dňový VIP lístok, ktorý vám zabezpečí maximálny komfort počas celého festivalu.</p>
+      <button onclick="addToCart('VIP 1-dňový lístok', 120)">Kúpiť 1-dňový VIP</button>
+      <button onclick="addToCart('VIP 3-dňový lístok', 300)">Kúpiť 3-dňový VIP</button>
+    </div>
+    
+  </main>
+  
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+
+    function addToCart(ticketName, price) {
+      const ticket = {
+        name: ticketName,
+        price: price
+      };
+
+      // Uloženie lístka do localStorage
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(ticket);
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Presmerovanie na stránku košíka
+      window.location.href = 'cart.html';
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventy - Domov</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    main {
+      margin-top: 10px;
+      text-align: center; /* Centrum textu */
+    }
+
+    h1 {
+      font-size: 2.5rem; /* Zvýšená veľkosť nadpisu */
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem; /* Zvýšená veľkosť textu */
+      margin: 10px 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 70px 20px;
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .logo img {
+      height: 150px;
+      margin-top: 10px;
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 30px;
+      height: 4px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    .nav-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-menu ul li {
+      padding: 10px 20px;
+    }
+    .nav-menu ul li a {
+      text-decoration: none;
+      color: black;
+      display: block;
+    }
+    
+    .nav-menu.active {
+      display: flex;
+    }
+    .cart-icon {
+      position: absolute;
+      top: 65px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .cart-icon svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Kontaktný formulár */
+    .contact-form {
+      margin-top: 20px;
+      text-align: left;
+      display: inline-block;
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .contact-form button {
+      padding: 10px 15px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <img src="bratiska.jpg" alt="Logo">
+    </div>
+    <a href="cart.html" class="cart-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2 13h13l2-7H6"></path>
+      </svg>
+    </a>
+  </header>
+  
+  <!-- Navigačné menu -->
+  <nav id="navMenu" class="nav-menu">
+    <ul>
+      <li><a href="index.html">Domov</a></li>
+      <li><a href="lineup.html">LineUp</a></li>
+      <li><a href="tickets.html">Lístky</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+   
+
+    <!-- Kontaktný formulár -->
+    <div class="contact-form">
+      <h1>Kontakt</h1>
+    <h2>Máte otázky? Nezabudnite nás kontaktovať!</h2>
+
+     
+      <form action="submit_form.php" method="POST">
+        <input type="text" name="name" placeholder="Vaše meno" required>
+        <input type="email" name="email" placeholder="Váš email" required>
+        <textarea name="message" placeholder="Vaša správa" rows="5" required></textarea>
+        <button type="submit">Odoslať</button>
+      </form>
+    </div>
+    
+    <p>Adresa : Odbojárov 10, 820 05 Bratislava</p>
+    <p>Tel. č. : 0917 123 456</p>
+    <p>Email : bratiska@please.sk</p>
+  </main>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

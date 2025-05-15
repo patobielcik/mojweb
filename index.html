@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventy - Domov</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    main {
+      margin-top: 10px; /* Posunie celý obsah nižšie */
+      text-align: center; /* Zarovná text na stred */
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 70px 20px;
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .logo img {
+      height: 150px;
+      margin-top: 10px; /* Posunie obrázok o 20px nižšie */
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 30px;
+      height: 4px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 20px; /* Presúva menu doľava */
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    .nav-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-menu ul li {
+      padding: 10px 20px;
+    }
+    .nav-menu ul li a {
+      text-decoration: none;
+      color: black;
+      display: block;
+    }
+    
+    .nav-menu.active {
+      display: flex;
+    }
+    .cart-icon {
+      position: absolute;
+      top: 65px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .cart-icon svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Nový štýl pre obrázky festivalu */
+    .festival-images {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 60px;
+      padding-bottom: 60px;
+    }
+    .festival-images img {
+      width: 380px; /* Nastaví rovnaké rozmery pre všetky obrázky */
+      height: 300px; /* Nastaví rovnaké výšky pre všetky obrázky */
+      object-fit: cover; /* Upraví obrázok, aby vyplnil požadované rozmery */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <img src="bratiska.jpg" alt="Logo">
+    </div>
+    <a href="cart.html" class="cart-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2 13h13l2-7H6"></path>
+      </svg>
+    </a>
+  </header>
+  
+  <!-- Navigačné menu -->
+  <nav id="navMenu" class="nav-menu">
+    <ul>
+      <li><a href="index.html">Domov</a></li>
+      <li><a href="lineup.html">LineUp</a></li>
+      <li><a href="tickets.html">Lístky</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Hlavný obsah -->
+  <main>
+    <h1>Vitajte na stránke nášho Hiphop Festivalu!</h1>
+    <h2>Pripravte sa na trojdňový zážitok – náš hiphop festival sa koná od 15. do 17. augusta, kedy vás čaká jedinečný program, ktorý spája najväčších umelcov, energické vystúpenia a autentickú atmosféru, ktorá vás vtiahne do sveta hiphopu.</h2>
+    <p>Užijete si vystúpenia najväčších hviezd hiphopu, energické battle, živé DJ sety a exkluzívne street art expozície. Každý detail festivalu je starostlivo navrhnutý tak, aby ste zažili autentický a nezabudnuteľný deň plný vášne pre hiphop.</p>
+    <p>Pridajte sa k nám a staňte sa súčasťou tejto hiphopovej revolúcie, kde hudba a umenie vytvárajú silné spojenie a inšpirujú nové príbehy!</p>
+  </main>  
+
+  <!-- Obrázky festivalu -->
+  <div class="festival-images">
+    <img src="festival1.jpg" alt="Festival Image 1">
+    <img src="festival2.jpg" alt="Festival Image 2">
+    <img src="festival3.jpg" alt="Festival Image 3">
+  </div>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

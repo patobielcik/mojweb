@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventy - Domov</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    main {
+      margin-top: 10px;
+      text-align: center; /* Center the entire main content */
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 70px 20px;
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .logo img {
+      height: 150px;
+      margin-top: 10px;
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 30px;
+      height: 4px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    .nav-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-menu ul li {
+      padding: 10px 20px;
+    }
+    .nav-menu ul li a {
+      text-decoration: none;
+      color: black;
+      display: block;
+    }
+    .nav-menu.active {
+      display: flex;
+    }
+    .cart-icon {
+      position: absolute;
+      top: 65px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .cart-icon svg {
+      width: 30px;
+      height: 30px;
+    }
+    .artist {
+      display: inline-block;
+      width: 250px;
+      margin: 20px;
+      text-align: center; /* Center the text within each artist box */
+    }
+    .artist img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .artist h2 {
+      font-size: 18px;
+      color: #333;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <img src="bratiska.jpg" alt="Logo">
+    </div>
+    <a href="cart.html" class="cart-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2 13h13l2-7H6"></path>
+      </svg>
+    </a>
+  </header>
+  
+  <nav id="navMenu" class="nav-menu">
+    <ul>
+      <li><a href="index.html">Domov</a></li>
+      <li><a href="lineup.html">LineUp</a></li>
+      <li><a href="tickets.html">Lístky</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <h1>Festival Line-up</h1>
+    <div class="artist">
+      <h2>Travis Scott</h2>
+      <img src="travis_scott.jpg" alt="Travis Scott">
+    </div>
+    <div class="artist">
+      <h2>Kendrick Lamar</h2>
+      <img src="kendrick_lamar.jpg" alt="Kendrick Lamar">
+    </div>
+    <div class="artist">
+      <h2>Lil Baby</h2>
+      <img src="lil_baby.jpg" alt="Lil Baby">
+    </div>
+    <div class="artist">
+      <h2>Future</h2>
+      <img src="future.jpg" alt="Future">
+    </div>
+    <div class="artist">
+      <h2>Luciano</h2>
+      <img src="luciano.jpg" alt="Luciano">
+    </div>
+    <div class="artist">
+      <h2>Central Cee</h2>
+      <img src="central_cee.jpg" alt="Central Cee">
+    </div>
+    <div class="artist">
+      <h2>Kontrafakt</h2>
+      <img src="kontrafakt.jpg" alt="Kontrafakt">
+    </div>
+    <div class="artist">
+      <h2>Separ</h2>
+      <img src="separ.jpg" alt="Separ">
+    </div>
+    <div class="artist">
+      <h2>Yzomandias</h2>
+      <img src="yzomandias.jpg" alt="Yzomandias">
+    </div>
+    <div class="artist">
+      <h2>Nik Tendo</h2>
+      <img src="nik_tendo.jpg" alt="Nik Tendo">
+    </div>
+    <div class="artist">
+      <h2>Gleb</h2>
+      <img src="gleb.jpg" alt="Gleb">
+    </div>
+  </main>
+  
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

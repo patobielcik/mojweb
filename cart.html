@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Košík</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    main {
+      margin-top: 10px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 70px 20px;
+      position: relative;
+    }
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .logo img {
+      height: 150px;
+      margin-top: 10px;
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 30px;
+      height: 4px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    .nav-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-menu ul li {
+      padding: 10px 20px;
+    }
+    .nav-menu ul li a {
+      text-decoration: none;
+      color: black;
+      display: block;
+    }
+    .nav-menu.active {
+      display: flex;
+    }
+    .cart-icon {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .cart-icon svg {
+      width: 30px;
+      height: 30px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+    }
+    .cart-item img {
+      width: 50px;
+    }
+    #totalPrice {
+      margin-top: 20px;
+    }
+    #discountCode {
+      margin-top: 10px;
+      padding: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    #weAcceptImg {
+      display: block;
+      margin: 280px auto;
+      max-width: 15%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">
+      <img src="bratiska.jpg" alt="Logo">
+    </div>
+  </header>
+  
+  <nav id="navMenu" class="nav-menu">
+    <ul>
+      <li><a href="index.html">Domov</a></li>
+      <li><a href="lineup.html">LineUp</a></li>
+      <li><a href="tickets.html">Lístky</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Košík</h1>
+    <div id="cartItems">
+      <!-- Pridávané položky sa zobrazia sem -->
+    </div>
+    <div id="totalPrice">Celková cena: 0 €</div>
+
+    <input type="text" id="discountCode" placeholder="Zadajte zľavový kód">
+    <button onclick="applyDiscount()">Použiť zľavu</button>
+
+    <button onclick="checkout()">Pokračovať v platbe</button>
+    <button onclick="clearCart()">Vymazať všetky lístky</button>
+
+    <img src="weaccept.jpg" alt="We Accept" id="weAcceptImg">
+  </main>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+
+    // Cart functionality
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function updateCart() {
+      const cartItemsDiv = document.getElementById('cartItems');
+      const totalPriceDiv = document.getElementById('totalPrice');
+      cartItemsDiv.innerHTML = '';
+      let totalPrice = 0;
+
+      cartItems.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('cart-item');
+        itemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <span>${item.name}</span>
+          <span>${item.price} €</span>
+          <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">
+          <button onclick="viewProductDetails(${index})">Zobraziť detaily</button>
+        `;
+        cartItemsDiv.appendChild(itemDiv);
+        totalPrice += item.price * item.quantity; // Pripočíta cenu položky k celkovému súčtu
+      });
+
+      totalPriceDiv.innerHTML = `Celková cena: ${totalPrice.toFixed(2)} €`;
+    }
+
+    function checkout() {
+      if (cartItems.length > 0) {
+        alert('Pokračujeme v platbe!');
+      } else {
+        alert('Váš košík je prázdny.');
+      }
+    }
+
+    function clearCart() {
+      localStorage.removeItem('cart');
+      cartItems.length = 0;
+      updateCart();
+      alert('Košík bol vymazaný.');
+    }
+
+    function applyDiscount() {
+      const discountCode = document.getElementById('discountCode').value;
+      if (discountCode === 'ZLAVA10') {
+        alert('Zľava 10% bola aplikovaná!');
+        // Tu môžeš upravit cenu košíka na základe zľavy
+      } else {
+        alert('Neplatný zľavový kód.');
+      }
+    }
+
+    function updateQuantity(index, quantity) {
+      cartItems[index].quantity = quantity;
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      updateCart();
+    }
+
+    function viewProductDetails(index) {
+      window.location.href = `product-details.html?productId=${index}`; // Presmeruje na stránku s detailmi produktu
+    }
+
+    // Call updateCart when page loads
+    updateCart();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
